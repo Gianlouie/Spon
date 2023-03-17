@@ -41,10 +41,6 @@
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
-		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
@@ -55,4 +51,17 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\*" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\event_icon.png" />
+	  <MauiImage Include="Resources\Images\header.png" />
+	  <MauiImage Include="Resources\Images\home_screen.png" />
+	  <MauiImage Include="Resources\Images\logo_fullcolor.png" />
+	  <MauiImage Include="Resources\Images\menu_icon.png" />
+	  <MauiImage Include="Resources\Images\message_icon.png" />
+	</ItemGroup>
 </Project>

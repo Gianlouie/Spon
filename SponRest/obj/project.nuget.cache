@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "SHe0vkr/+5cP1Sn96ThxSE8ttFxUuuSsnjYnrWE+EbgLgpM8Ly9CrpJ5lyekQ+s0Jif+G+j0vVuRjfxbA4o3ew==",
+  "success": true,
+  "projectFilePath": "/Users/gianlouiemolinary/Projects/Spon/SponRest/SponRest.csproj",
+  "expectedPackageFiles": [
+    "/Users/gianlouiemolinary/.nuget/packages/microsoft.aspnetcore.openapi/7.0.3/microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
+    "/Users/gianlouiemolinary/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/gianlouiemolinary/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/gianlouiemolinary/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/gianlouiemolinary/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/gianlouiemolinary/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/gianlouiemolinary/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
