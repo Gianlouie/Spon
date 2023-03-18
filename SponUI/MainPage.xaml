@@ -9,12 +9,12 @@
           ColumnSpacing="20"
           RowSpacing="20">
 
-        <Image Grid.Column="0" Source="menu_icon.png"></Image>
-        <Image Grid.Column="1" Source="event_icon.png"></Image>
+        <Image Grid.Column="0" Source="menu_icon.png" Aspect="AspectFill"></Image>
+        <Image Grid.Column="1" Source="event_icon.png" Aspect="AspectFit"></Image>
         <Image Grid.Column="2" Source="logo_fullcolor.png"></Image>
         <Image Grid.Column="3" Source="message_icon.png"></Image>
 
-        <CollectionView Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4">
+        <CollectionView Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" HorizontalOptions="CenterAndExpand">
             <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Event 1</x:String>
