@@ -38,7 +38,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\logo_fullcolor.png" Color="White" />
+		<MauiIcon Include="Resources\AppIcon\logo_fullcolor.png" ForegroundScale="0.65" Color="White" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\logo_fullcolor.png" Color="White" />
