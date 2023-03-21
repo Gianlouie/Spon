@@ -37,11 +37,12 @@
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
+
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\logo_fullcolor.png" ForegroundScale="0.65" Color="White" />
+		<MauiIcon Include="Resources\AppIcon\logo_fullcolor.svg" ForegroundScale="0.65" Color="White" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\logo_fullcolor.png" Color="White" />
+		<MauiSplashScreen Include="Resources\Splash\logo_fullcolor.svg" BaseSize="128,128" Color="White" />
 
 		<!-- Images -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -52,20 +53,26 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\*" />
 	</ItemGroup>
 
-
 	<ItemGroup>
-	  <MauiImage Include="Resources\Images\event_icon.png" />
-	  <MauiImage Include="Resources\Images\header.png" />
-	  <MauiImage Include="Resources\Images\home_screen.png" />
-	  <MauiImage Include="Resources\Images\logo_fullcolor.png" />
-	  <MauiImage Include="Resources\Images\menu_icon.png" />
-	  <MauiImage Include="Resources\Images\message_icon.png" />
+	  <MauiImage Include="Resources\Images\create_event_icon.svg" />
+	  <MauiImage Include="Resources\Images\logo_fullcolor.svg" />
+	  <MauiImage Include="Resources\Images\menu_icon.svg" />
+	  <MauiImage Include="Resources\Images\message_icon.svg" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Models\" />
+	  <None Remove="ViewModel\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	  <Folder Include="ViewModel\" />
+	</ItemGroup>
 </Project>
