@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SponUI.MainPage"
-             xmlns:viewmodel="clr-namespace:SponUI.ViewModel" xmlns:model="clr-namespace:SponUI.Models" x:DataType="viewmodel:MainViewModel">
+             xmlns:viewmodel="clr-namespace:SponUI.ViewModel" xmlns:model="clr-namespace:SponUI.Models" x:DataType="viewmodel:MainViewModel"
+             >
 
     <Grid RowDefinitions="50, Auto, *"
           ColumnDefinitions=".125*, .125*, .50*, .25*"
@@ -11,17 +12,27 @@
           RowSpacing="20">
 
         <Image Grid.Column="0" Source="menu_icon.png" Aspect="AspectFill"></Image>
-        <Image Grid.Column="1" Source="event_icon.png" Aspect="AspectFit"></Image>
+        <Image Grid.Column="1" Source="create_event_icon.png" Aspect="AspectFit"></Image>
         <Image Grid.Column="2" Source="logo_fullcolor.png" Aspect="AspectFit"></Image>
         <Image Grid.Column="3" Source="message_icon.png" Aspect="AspectFit"></Image>
 
         <CollectionView Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" ItemsSource="{Binding Events}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Event">
+                <DataTemplate x:DataType="{x:Type model:Event}">
                     <Grid Padding="0,5">
-                        <Frame>
-                            <Image Source="{Binding Photo}"></Image>
-                        </Frame>
+                        <Border WidthRequest="350"
+                                HeightRequest="100"
+                                Stroke="{AppThemeBinding Light=Gray, Dark=Gray}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 20"
+                                BackgroundColor="White">
+                            
+                            <Image Source="{Binding Photo.Source}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="98"
+                                   WidthRequest="348">
+                            </Image>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

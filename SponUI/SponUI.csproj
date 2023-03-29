@@ -65,12 +65,9 @@
 	  <MauiImage Include="Resources\Images\logo_fullcolor.svg" />
 	  <MauiImage Include="Resources\Images\menu_icon.svg" />
 	  <MauiImage Include="Resources\Images\message_icon.svg" />
+	  <MauiImage Include="Resources\Images\default_image.png" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="Models\" />
-	  <None Remove="ViewModel\" />
-	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewModel\" />

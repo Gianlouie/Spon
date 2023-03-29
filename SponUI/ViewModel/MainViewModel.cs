@@ -17,7 +17,7 @@ namespace SponUI.ViewModel
         ObservableCollection<Event> events;
 
         [ObservableProperty]
-        private Event ev;
+        Event ev;
     }
 }
 
