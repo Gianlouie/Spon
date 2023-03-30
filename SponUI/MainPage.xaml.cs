@@ -9,8 +9,12 @@ public partial class MainPage : ContentPage
 	public MainPage(MainViewModel vm)
 	{
 		InitializeComponent();
-        vm.Events.Add(new Event());
-		vm.Events.Add(new Event());
+
+		for (int i = 0; i < 3; i++)
+		{
+			vm.Events.Add(new Event());
+		}
+
         BindingContext = vm;
 	}
 

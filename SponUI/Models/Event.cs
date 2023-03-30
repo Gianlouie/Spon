@@ -6,9 +6,10 @@ namespace SponUI.Models
 		private string title = string.Empty;
 		private Image photo = new Image() { Source = ImageSource.FromFile("default_image.png") };
 		private DateTime startTime = DateTime.MinValue;
-		private decimal distance = decimal.MinusOne;
+		private string address = string.Empty;
 		private decimal price = decimal.MinusOne;
 		private List<Attendant> attendants = new List<Attendant>();
+		private bool isSponsored = false;
 
 		public string Title
 		{
@@ -46,15 +47,15 @@ namespace SponUI.Models
 			}
 		}
 
-		public decimal Distance
+		public string Address
 		{
 			get
 			{
-				return distance;
+				return address;
 			}
 			set
 			{
-				distance = value;
+				address = value;
 			}
 		}
 
@@ -79,6 +80,18 @@ namespace SponUI.Models
 			set
 			{
 				attendants = value;
+			}
+		}
+
+		public bool IsSponsored
+		{
+			get
+			{
+				return isSponsored;
+			}
+			set
+			{
+				isSponsored = value;
 			}
 		}
 	}

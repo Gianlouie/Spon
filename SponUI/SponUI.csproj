@@ -72,4 +72,25 @@
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewModel\" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <MauiFont Include="Resources\Fonts\Kanit-Black.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-BlackItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-Bold.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-BoldItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-ExtraBold.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-ExtraBoldItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-ExtraLight.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-ExtraLightItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-Italic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-Light.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-LightItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-Medium.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-MediumItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-Regular.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-SemiBold.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-SemiBoldItalic.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-Thin.ttf" />
+	  <MauiFont Include="Resources\Fonts\Kanit-ThinItalic.ttf" />
+	</ItemGroup>
 </Project>

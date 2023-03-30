@@ -20,18 +20,99 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type model:Event}">
                     <Grid Padding="0,5">
+                        <Border WidthRequest="75"
+                                HeightRequest="25"
+                                Stroke="#95F020"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 20"
+                                BackgroundColor="#95F020"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                ZIndex="1"
+                                TranslationX="30"
+                                TranslationY="10">
+
+                                <Label Text="Free"
+                                       FontFamily="Kanit-Regular"
+                                       FontSize="12"
+                                       TextColor="Black"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       HeightRequest="25">
+                                </Label>
+                        </Border>
                         <Border WidthRequest="350"
-                                HeightRequest="100"
+                                HeightRequest="150"
                                 Stroke="{AppThemeBinding Light=Gray, Dark=Gray}"
                                 StrokeThickness="1"
                                 StrokeShape="RoundRectangle 20"
                                 BackgroundColor="White">
                             
+                            
                             <Image Source="{Binding Photo.Source}"
                                    Aspect="AspectFill"
-                                   HeightRequest="98"
+                                   HeightRequest="148"
                                    WidthRequest="348">
                             </Image>
+                        </Border>
+
+                        <Border WidthRequest="350"
+                                HeightRequest="75"
+                                Stroke="Gray"
+                                StrokeThickness="2"
+                                StrokeShape="RoundRectangle 10"
+                                BackgroundColor="White"
+                                Grid.Row="5"
+                                VerticalOptions="End">
+
+                            <Grid Padding="5">
+                                <Border WidthRequest="75"
+                                        HeightRequest="25"
+                                        Stroke="Black"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 20"
+                                        BackgroundColor="Black"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Start">
+
+                                    <Label Text="2/10 Going"
+                                           FontFamily="Kanit-Regular"
+                                           FontSize="12"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
+                                    </Label>
+                                </Border>
+
+                                <Label Text="Event @ Place"
+                                       FontAttributes="Bold"
+                                       FontFamily="Kanit-Regular"
+                                       FontSize="20"
+                                       TextColor="Black"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Start">
+                                </Label>
+
+                                <Border WidthRequest="50"
+                                        HeightRequest="25"
+                                        Stroke="Black"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 20"
+                                        BackgroundColor="Black"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="End">
+
+                                    <Label Text="0.5 mi"
+                                           FontFamily="Kanit-Regular"
+                                           FontSize="12"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
+                                    </Label>
+                                </Border>
+                            </Grid>
                         </Border>
                     </Grid>
                 </DataTemplate>
