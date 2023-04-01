@@ -1,4 +1,6 @@
 ﻿using System;
+using SponUI.Enums;
+
 namespace SponUI.Models
 {
 	public class Event
@@ -9,7 +11,7 @@ namespace SponUI.Models
 		private string address = string.Empty;
 		private decimal price = decimal.MinusOne;
 		private List<Attendant> attendants = new List<Attendant>();
-		private bool isSponsored = false;
+		private EventStatus eventStatus = EventStatus.None;
 
 		public string Title
 		{
@@ -83,15 +85,23 @@ namespace SponUI.Models
 			}
 		}
 
-		public bool IsSponsored
+		public EventStatus EventStatus
 		{
 			get
 			{
-				return isSponsored;
+				return eventStatus;
 			}
 			set
 			{
-				isSponsored = value;
+				eventStatus = value;
+			}
+		}
+
+		public int AttendentCount
+		{
+			get
+			{
+				return attendants.Count();
 			}
 		}
 	}

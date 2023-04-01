@@ -22,35 +22,58 @@
                     <Grid Padding="0,5">
                         <Border WidthRequest="75"
                                 HeightRequest="25"
-                                Stroke="#95F020"
                                 StrokeThickness="1"
+                                Stroke="#FFAA2C"
                                 StrokeShape="RoundRectangle 20"
-                                BackgroundColor="#95F020"
+                                BackgroundColor="#FFAA2C"
                                 VerticalOptions="Start"
                                 HorizontalOptions="Start"
                                 ZIndex="1"
                                 TranslationX="30"
                                 TranslationY="10">
-
-                                <Label Text="Free"
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding Price}"
+                                             Value="-1">
+                                    <Setter Property="Stroke"
+                                            Value="#95F020">
+                                    </Setter>
+                                    <Setter Property="BackgroundColor"
+                                            Value="#95F020">
+                                    </Setter>
+                                </DataTrigger>
+                            </Border.Triggers>
+                                <Label 
+                                       Text="{Binding Price, StringFormat='${0:F0}'}"
                                        FontFamily="Kanit-Regular"
-                                       FontSize="12"
-                                       TextColor="Black"
+                                       FontSize="15"
+                                       TextColor="White"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="Center"
                                        HeightRequest="25">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding Price}"
+                                                     Value="-1">
+                                            <Setter Property="TextColor"
+                                                    Value="Black">
+                                            </Setter>
+                                            <Setter Property="Text"
+                                                    Value="Free">
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Label.Triggers>
                                 </Label>
                         </Border>
                         <Border WidthRequest="350"
                                 HeightRequest="150"
-                                Stroke="{AppThemeBinding Light=Gray, Dark=Gray}"
+                                Stroke="Gray"
                                 StrokeThickness="1"
                                 StrokeShape="RoundRectangle 20"
                                 BackgroundColor="White">
-                            
-                            
+
                             <Image Source="{Binding Photo.Source}"
                                    Aspect="AspectFill"
                                    HeightRequest="148"
@@ -58,6 +81,34 @@
                             </Image>
                         </Border>
 
+                        <FlexLayout ZIndex="1">
+                            <CollectionView TranslationX="30" TranslationY="-57" ItemsSource="{Binding Attendants}">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal">
+                                        </LinearItemsLayout>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="{x:Type model:Attendant}">
+                                            <Grid Padding="0,5">
+                                                <Border WidthRequest="25"
+                                                        HeightRequest="25"
+                                                        StrokeShape="RoundRectangle 50"
+                                                        StrokeThickness="0"
+                                                        VerticalOptions="End"
+                                                        HorizontalOptions="Center">
+
+                                                    <Image Source="{Binding Photo.Source}"
+                                                       Aspect="AspectFill"
+                                                       WidthRequest="20"
+                                                       HeightRequest="20">
+                                                    </Image>
+                                                </Border>
+
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                        </FlexLayout>
                         <Border WidthRequest="350"
                                 HeightRequest="75"
                                 Stroke="Gray"
@@ -66,7 +117,7 @@
                                 BackgroundColor="White"
                                 Grid.Row="5"
                                 VerticalOptions="End">
-
+                            
                             <Grid Padding="5">
                                 <Border WidthRequest="75"
                                         HeightRequest="25"
@@ -75,14 +126,17 @@
                                         StrokeShape="RoundRectangle 20"
                                         BackgroundColor="Black"
                                         VerticalOptions="Start"
-                                        HorizontalOptions="Start">
+                                        HorizontalOptions="Start"
+                                        TranslationY="10"
+                                        TranslationX="3">
 
-                                    <Label Text="2/10 Going"
+                                    <Label Text="{Binding AttendentCount, StringFormat='{0:F0}/10 Going'}"
                                            FontFamily="Kanit-Regular"
                                            FontSize="12"
                                            TextColor="White"
                                            HorizontalOptions="Center"
-                                           VerticalOptions="Center">
+                                           VerticalOptions="Center"
+                                           HeightRequest="20">
                                     </Label>
                                 </Border>
 
@@ -92,7 +146,8 @@
                                        FontSize="20"
                                        TextColor="Black"
                                        VerticalOptions="End"
-                                       HorizontalOptions="Start">
+                                       HorizontalOptions="Start"
+                                       HeightRequest="25">
                                 </Label>
 
                                 <Border WidthRequest="50"
@@ -109,9 +164,12 @@
                                            FontSize="12"
                                            TextColor="White"
                                            HorizontalOptions="Center"
-                                           VerticalOptions="Center">
+                                           VerticalOptions="Center"
+                                           HeightRequest="20"
+                                           WidthRequest="35">
                                     </Label>
                                 </Border>
+                                
                             </Grid>
                         </Border>
                     </Grid>
@@ -119,7 +177,5 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-
-
 </ContentPage>
 

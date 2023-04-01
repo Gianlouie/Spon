@@ -66,11 +66,13 @@
 	  <MauiImage Include="Resources\Images\menu_icon.svg" />
 	  <MauiImage Include="Resources\Images\message_icon.svg" />
 	  <MauiImage Include="Resources\Images\default_image.png" />
+	  <MauiImage Include="Resources\Images\defaultpp.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewModel\" />
+	  <Folder Include="Enums\" />
 	</ItemGroup>
 	
 	<ItemGroup>
