@@ -12,16 +12,14 @@ namespace SponUI.Models
 		private decimal price = decimal.MinusOne;
 		private List<Attendant> attendants = new List<Attendant>();
 		private EventStatus eventStatus = EventStatus.None;
+		private string activity = string.Empty;
+		private string place = string.Empty;
 
 		public string Title
 		{
 			get
 			{
-				return title;
-			}
-			set
-			{
-				title = value;
+				return activity + " @ " + place;
 			}
 		}
 
@@ -102,6 +100,30 @@ namespace SponUI.Models
 			get
 			{
 				return attendants.Count();
+			}
+		}
+
+		public string Activity
+		{
+			get
+			{
+				return activity;
+			}
+			set
+			{
+				activity = value;
+			}
+		}
+
+		public string Place
+		{
+			get
+			{
+				return place;
+			}
+			set
+			{
+				place = value;
 			}
 		}
 	}

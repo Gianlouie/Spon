@@ -12,9 +12,9 @@
           RowSpacing="20">
 
         <Image Grid.Column="0" Source="menu_icon.png" Aspect="AspectFill"></Image>
-        <Image Grid.Column="1" Source="create_event_icon.png" Aspect="AspectFit"></Image>
-        <Image Grid.Column="2" Source="logo_fullcolor.png" Aspect="AspectFit"></Image>
-        <Image Grid.Column="3" Source="message_icon.png" Aspect="AspectFit"></Image>
+        <Image Grid.Column="1" Source="create_event_icon.png" Aspect="AspectFit" HeightRequest="35" WidthRequest="35" TranslationX="-15"></Image>
+        <Image Grid.Column="2" Source="logo_fullcolor.png" Aspect="AspectFit" HeightRequest="75" WidthRequest="75" TranslationX="-10"></Image>
+        <Image Grid.Column="3" Source="message_icon.png" Aspect="AspectFit" TranslationX="10" TranslationY="5"></Image>
 
         <CollectionView Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" ItemsSource="{Binding Events}">
             <CollectionView.ItemTemplate>
@@ -66,9 +66,16 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
+                            <Border.Shadow>
+                                <Shadow Brush="Black"
+                                        Offset="0,5"
+                                        Radius="5"
+                                        Opacity="0.4">
+                                </Shadow>
+                            </Border.Shadow>
                         </Border>
                         <Border WidthRequest="350"
-                                HeightRequest="150"
+                                HeightRequest="200"
                                 Stroke="Gray"
                                 StrokeThickness="1"
                                 StrokeShape="RoundRectangle 20"
@@ -76,9 +83,16 @@
 
                             <Image Source="{Binding Photo.Source}"
                                    Aspect="AspectFill"
-                                   HeightRequest="148"
+                                   HeightRequest="198"
                                    WidthRequest="348">
                             </Image>
+                            <Border.Shadow>
+                                <Shadow Brush="Black"
+                                        Offset="0,5"
+                                        Radius="5"
+                                        Opacity="0.4">
+                                </Shadow>
+                            </Border.Shadow>
                         </Border>
 
                         <FlexLayout ZIndex="1">
@@ -96,19 +110,18 @@
                                                         StrokeThickness="0"
                                                         VerticalOptions="End"
                                                         HorizontalOptions="Center">
-
                                                     <Image Source="{Binding Photo.Source}"
                                                        Aspect="AspectFill"
                                                        WidthRequest="20"
                                                        HeightRequest="20">
                                                     </Image>
                                                 </Border>
-
                                             </Grid>
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
                         </FlexLayout>
+
                         <Border WidthRequest="350"
                                 HeightRequest="75"
                                 Stroke="Gray"
@@ -138,9 +151,16 @@
                                            VerticalOptions="Center"
                                            HeightRequest="20">
                                     </Label>
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black"
+                                                Offset="0,5"
+                                                Radius="5"
+                                                Opacity="0.4">
+                                        </Shadow>
+                                    </Border.Shadow>
                                 </Border>
 
-                                <Label Text="Event @ Place"
+                                <Label Text="{Binding Title}"
                                        FontAttributes="Bold"
                                        FontFamily="Kanit-Regular"
                                        FontSize="20"
@@ -168,8 +188,14 @@
                                            HeightRequest="20"
                                            WidthRequest="35">
                                     </Label>
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black"
+                                                Offset="0,5"
+                                                Radius="5"
+                                                Opacity="0.4">
+                                        </Shadow>
+                                    </Border.Shadow>
                                 </Border>
-                                
                             </Grid>
                         </Border>
                     </Grid>

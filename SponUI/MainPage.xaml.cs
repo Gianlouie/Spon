@@ -24,8 +24,8 @@ public partial class MainPage : ContentPage
         {
             List<Attendant> attendants = new List<Attendant>() { new Attendant(), new Attendant(), new Attendant() };
 
-            vm.Events.Add(new Event() { Price = r.Next(1, 20), Attendants = attendants });
-            vm.Events.Add(new Event() { Attendants = attendants});
+            vm.Events.Add(new Event() { Activity="Bowling", Place="Boardwalk Bowl", Price = r.Next(1, 20), Attendants = attendants });
+            vm.Events.Add(new Event() { Activity="Hiking", Place="Nature Trail", Attendants = attendants});
         }
     }
 
