@@ -42,7 +42,7 @@
 		<MauiIcon Include="Resources\AppIcon\logo_fullcolor.svg" ForegroundScale="0.65" Color="White" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\logo_fullcolor.svg" BaseSize="128,128" Color="White" />
+		<MauiSplashScreen Include="Resources\Splash\logo_fullcolor.svg" Resize="false" Color="White" />
 
 		<!-- Images -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -67,6 +67,8 @@
 	  <MauiImage Include="Resources\Images\message_icon.svg" />
 	  <MauiImage Include="Resources\Images\default_image.png" />
 	  <MauiImage Include="Resources\Images\defaultpp.png" />
+	  <MauiImage Include="Resources\Images\bowling.svg" />
+	  <MauiImage Include="Resources\Images\hiking_trail.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -95,4 +97,5 @@
 	  <MauiFont Include="Resources\Fonts\Kanit-Thin.ttf" />
 	  <MauiFont Include="Resources\Fonts\Kanit-ThinItalic.ttf" />
 	</ItemGroup>
+	
 </Project>
