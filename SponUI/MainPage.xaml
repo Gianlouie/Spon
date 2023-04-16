@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SponUI.MainPage"
              xmlns:viewmodel="clr-namespace:SponUI.ViewModel" xmlns:model="clr-namespace:SponUI.Models" x:DataType="viewmodel:MainViewModel"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
              >
 
     <Grid RowDefinitions="50, Auto, *"
           ColumnDefinitions=".125*, .125*, .50*, .25*"
-          Padding="20"
           ColumnSpacing="20"
           RowSpacing="20"
           HorizontalOptions="FillAndExpand"
@@ -18,242 +20,251 @@
         <Image Grid.Column="2" Source="logo_fullcolor.png" Aspect="AspectFit" HeightRequest="75" WidthRequest="75" TranslationX="-10"></Image>
         <Image Grid.Column="3" Source="message_icon.png" Aspect="AspectFit" TranslationX="10" TranslationY="5"></Image>
 
-        <CollectionView Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" ItemsSource="{Binding Events}" HorizontalOptions="Fill" Margin="-20,0">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type model:Event}">
-                    <Grid Padding="0,12">
-                        <Border 
-                                StrokeThickness="1"
-                                Stroke="#FFAA2C"
-                                StrokeShape="RoundRectangle 20"
-                                BackgroundColor="#FFAA2C"
-                                VerticalOptions="Start"
-                                HorizontalOptions="Start"
-                                WidthRequest="75"
-                                HeightRequest="25"
-                                ZIndex="1"
-                                TranslationX="30"
-                                TranslationY="10">
-                            <Border.Triggers>
-                                <DataTrigger TargetType="Border"
-                                             Binding="{Binding Price}"
-                                             Value="-1">
-                                    <Setter Property="Stroke"
-                                            Value="#95F020">
-                                    </Setter>
-                                    <Setter Property="BackgroundColor"
-                                            Value="#95F020">
-                                    </Setter>
-                                </DataTrigger>
-                            </Border.Triggers>
-                                <Label 
-                                       Text="{Binding Price, StringFormat='${0:F0}'}"
-                                       FontFamily="Kanit-Regular"
-                                       FontSize="15"
-                                       TextColor="White"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="Center"
-                                       HeightRequest="25">
-                                    <Label.Triggers>
-                                        <DataTrigger TargetType="Label"
-                                                     Binding="{Binding Price}"
-                                                     Value="-1">
-                                            <Setter Property="TextColor"
-                                                    Value="Black">
-                                            </Setter>
-                                            <Setter Property="Text"
-                                                    Value="Free">
-                                            </Setter>
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                </Label>
-                            <Border.Shadow>
-                                <Shadow Brush="Black"
-                                        Offset="0,5"
-                                        Radius="5"
-                                        Opacity="0.4">
-                                </Shadow>
-                            </Border.Shadow>
-                        </Border>
-                        <Border WidthRequest="400"
-                                HeightRequest="200"
-                                Stroke="Gray"
-                                StrokeThickness="1"
-                                StrokeShape="RoundRectangle 10"
-                                BackgroundColor="White">
 
-                            <Image Source="{Binding Photo.Source}"
-                                   Aspect="AspectFill"
-                                   HeightRequest="198"
-                                   WidthRequest="398">
-                            </Image>
-                            <Border.Shadow>
-                                <Shadow Brush="Black"
-                                        Offset="0,5"
-                                        Radius="5"
-                                        Opacity="0.4">
-                                </Shadow>
-                            </Border.Shadow>
-                        </Border>
-
-                        <FlexLayout ZIndex="1">
-                            <CollectionView TranslationX="30" TranslationY="-57" ItemsSource="{Binding Attendants}">
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Horizontal">
-                                        </LinearItemsLayout>
-                                    </CollectionView.ItemsLayout>
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate x:DataType="{x:Type model:Attendant}">
-                                            <Grid Padding="0,5">
-                                                <Border WidthRequest="25"
-                                                        HeightRequest="25"
-                                                        StrokeShape="RoundRectangle 50"
-                                                        StrokeThickness="0"
-                                                        VerticalOptions="End"
-                                                        HorizontalOptions="Center">
-                                                    <Image  Source="{Binding Photo.Source}"
-                                                            Aspect="AspectFill"
-                                                            HeightRequest="20"
-                                                            WidthRequest="20">
-                                                    </Image>
-                                                </Border>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                        </FlexLayout>
-
-                        <Border WidthRequest="75"
-                                HeightRequest="50"
-                                Stroke="Gray"
-                                StrokeThickness="2"
-                                StrokeShape="RoundRectangle 10"
-                                BackgroundColor="White"
-                                Grid.Row="5"
-                                VerticalOptions="End"
-                                ZIndex="1"
-                                TranslationX="150"
-                                TranslationY="-50">
-                            <Label Text="Starting in"
-                                   TextColor="Black"
-                                   FontFamily="KanitRegular"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Start"
-                                   HeightRequest="89"
-                                   FontSize="12"
-                                   Padding="10,0">
-                            </Label>
-                            <Border.Shadow>
-                                <Shadow Brush="Black"
-                                        Offset="0,5"
-                                        Radius="5"
-                                        Opacity="0.4">
-                                </Shadow>
-                            </Border.Shadow>
-                        </Border>
-                        <Border WidthRequest="90"
-                                HeightRequest="50"
-                                Stroke="Gray"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 20"
-                                Grid.Row="5"
-                                VerticalOptions="End"
-                                ZIndex="1"
-                                TranslationX="151"
-                                TranslationY="-35">
-                            <Label Text="0:15"
-                                   TextColor="Red"
-                                   FontFamily="KanitRegular"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Start"
-                                   HeightRequest="89"
-                                   FontSize="20"
-                                   Padding="10,0">
-                            </Label>
-                        </Border>
-                        <Border WidthRequest="400"
-                                HeightRequest="75"
-                                Stroke="Gray"
-                                StrokeThickness="2"
-                                StrokeShape="RoundRectangle 10"
-                                BackgroundColor="White"
-                                Grid.Row="5"
-                                VerticalOptions="End">
-                            
-                            <Grid Padding="0,5">
-                                <Border WidthRequest="75"
-                                        HeightRequest="25"
-                                        Stroke="Black"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 20"
-                                        BackgroundColor="Black"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start"
-                                        TranslationY="10"
-                                        TranslationX="8">
-
-                                    <Label Text="{Binding AttendentCount, StringFormat='{0:F0}/10 Going'}"
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding GetEventsCommand}"
+                     Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Column="0"
+                     Margin="-15,0"
+                     >
+            <CollectionView Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Column="0"
+                     Margin="-15,0" ItemsSource="{Binding Events}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type model:Event}">
+                        <Grid HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Border 
+                                    StrokeThickness="1"
+                                    Stroke="#FFAA2C"
+                                    StrokeShape="RoundRectangle 20"
+                                    BackgroundColor="#FFAA2C"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="75"
+                                    HeightRequest="25"
+                                    ZIndex="1"
+                                    TranslationX="30"
+                                    TranslationY="10">
+                                <Border.Triggers>
+                                    <DataTrigger TargetType="Border"
+                                                 Binding="{Binding Price}"
+                                                 Value="-1">
+                                        <Setter Property="Stroke"
+                                                Value="#95F020">
+                                        </Setter>
+                                        <Setter Property="BackgroundColor"
+                                                Value="#95F020">
+                                        </Setter>
+                                    </DataTrigger>
+                                </Border.Triggers>
+                                    <Label 
+                                           Text="{Binding Price, StringFormat='${0:F0}'}"
                                            FontFamily="Kanit-Regular"
-                                           FontSize="12"
+                                           FontSize="15"
                                            TextColor="White"
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center"
-                                           HeightRequest="20"
-                                           Padding="10,0">
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           HeightRequest="25">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Price}"
+                                                         Value="-1">
+                                                <Setter Property="TextColor"
+                                                        Value="Black">
+                                                </Setter>
+                                                <Setter Property="Text"
+                                                        Value="Free">
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Label.Triggers>
                                     </Label>
-                                    <Border.Shadow>
-                                        <Shadow Brush="Black"
-                                                Offset="0,5"
-                                                Radius="5"
-                                                Opacity="0.4">
-                                        </Shadow>
-                                    </Border.Shadow>
-                                </Border>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="0,5"
+                                            Radius="5"
+                                            Opacity="0.4">
+                                    </Shadow>
+                                </Border.Shadow>
+                            </Border>
+                            <Border WidthRequest="400"
+                                    HeightRequest="200"
+                                    Stroke="Gray"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="Center">
 
-                                <Label Text="{Binding Title}"
-                                       FontAttributes="Bold"
-                                       FontFamily="Kanit-Regular"
-                                       FontSize="20"
+                                <Image Source="{Binding Photo.Source}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="198"
+                                       WidthRequest="398">
+                                </Image>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="0,5"
+                                            Radius="5"
+                                            Opacity="0.4">
+                                    </Shadow>
+                                </Border.Shadow>
+                            </Border>
+
+                            <FlexLayout ZIndex="1">
+                                <CollectionView TranslationX="30" TranslationY="-57" ItemsSource="{Binding Attendants}">
+                                        <CollectionView.ItemsLayout>
+                                            <LinearItemsLayout Orientation="Horizontal">
+                                            </LinearItemsLayout>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="{x:Type model:Attendant}">
+                                                <Grid Padding="0,5">
+                                                    <Border WidthRequest="25"
+                                                            HeightRequest="25"
+                                                            StrokeShape="RoundRectangle 50"
+                                                            StrokeThickness="0"
+                                                            VerticalOptions="End"
+                                                            HorizontalOptions="Center">
+                                                        <Image  Source="{Binding Photo.Source}"
+                                                                Aspect="AspectFill"
+                                                                HeightRequest="20"
+                                                                WidthRequest="20">
+                                                        </Image>
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                            </FlexLayout>
+
+                            <Border WidthRequest="75"
+                                    HeightRequest="50"
+                                    Stroke="Gray"
+                                    StrokeThickness="2"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="White"
+                                    Grid.Row="5"
+                                    VerticalOptions="End"
+                                    ZIndex="1"
+                                    TranslationX="150"
+                                    TranslationY="-50">
+                                <Label Text="Starting in"
                                        TextColor="Black"
-                                       VerticalOptions="End"
-                                       HorizontalOptions="Start"
-                                       HeightRequest="25"
-                                       TranslationX="5">
+                                       FontFamily="KanitRegular"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Start"
+                                       HeightRequest="89"
+                                       FontSize="12"
+                                       Padding="10,0">
                                 </Label>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="0,5"
+                                            Radius="5"
+                                            Opacity="0.4">
+                                    </Shadow>
+                                </Border.Shadow>
+                            </Border>
+                            <Border WidthRequest="90"
+                                    HeightRequest="50"
+                                    Stroke="Gray"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 20"
+                                    Grid.Row="5"
+                                    VerticalOptions="End"
+                                    ZIndex="1"
+                                    TranslationX="151"
+                                    TranslationY="-35">
+                                <Label Text="0:15"
+                                       TextColor="Red"
+                                       FontFamily="KanitRegular"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Start"
+                                       HeightRequest="89"
+                                       FontSize="20"
+                                       Padding="10,0">
+                                </Label>
+                            </Border>
+                            <Border WidthRequest="400"
+                                    HeightRequest="75"
+                                    Stroke="Gray"
+                                    StrokeThickness="2"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="White"
+                                    Grid.Row="5"
+                                    VerticalOptions="End">
+                            
+                                <Grid Padding="0,5">
+                                    <Border WidthRequest="75"
+                                            HeightRequest="25"
+                                            Stroke="Black"
+                                            StrokeThickness="1"
+                                            StrokeShape="RoundRectangle 20"
+                                            BackgroundColor="Black"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start"
+                                            TranslationY="10"
+                                            TranslationX="8">
 
-                                <Border WidthRequest="50"
-                                        HeightRequest="25"
-                                        Stroke="Black"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 20"
-                                        BackgroundColor="Black"
-                                        VerticalOptions="End"
-                                        HorizontalOptions="End"
-                                        TranslationX="-5">
+                                        <Label Text="{Binding AttendentCount, StringFormat='{0:F0}/10 Going'}"
+                                               FontFamily="Kanit-Regular"
+                                               FontSize="12"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               HeightRequest="20"
+                                               Padding="10,0">
+                                        </Label>
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black"
+                                                    Offset="0,5"
+                                                    Radius="5"
+                                                    Opacity="0.4">
+                                            </Shadow>
+                                        </Border.Shadow>
+                                    </Border>
 
-                                    <Label Text="0.5 mi"
+                                    <Label Text="{Binding Title}"
+                                           FontAttributes="Bold"
                                            FontFamily="Kanit-Regular"
-                                           FontSize="12"
-                                           TextColor="White"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center">
+                                           FontSize="20"
+                                           TextColor="Black"
+                                           VerticalOptions="End"
+                                           HorizontalOptions="Start"
+                                           HeightRequest="25"
+                                           TranslationX="5">
                                     </Label>
-                                    <Border.Shadow>
-                                        <Shadow Brush="Black"
-                                                Offset="0,5"
-                                                Radius="5"
-                                                Opacity="0.4">
-                                        </Shadow>
-                                    </Border.Shadow>
-                                </Border>
-                            </Grid>
-                        </Border>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+                                    <Border WidthRequest="50"
+                                            HeightRequest="25"
+                                            Stroke="Black"
+                                            StrokeThickness="1"
+                                            StrokeShape="RoundRectangle 20"
+                                            BackgroundColor="Black"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="End"
+                                            TranslationX="-5">
+
+                                        <Label Text="0.5 mi"
+                                               FontFamily="Kanit-Regular"
+                                               FontSize="12"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                                        </Label>
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black"
+                                                    Offset="0,5"
+                                                    Radius="5"
+                                                    Opacity="0.4">
+                                            </Shadow>
+                                        </Border.Shadow>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </Grid>
 </ContentPage>
 
