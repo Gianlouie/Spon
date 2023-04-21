@@ -12,7 +12,7 @@ namespace SponRest.Repository
 
 		public EventRepository(DapperContext context)
 		{
-			context = _context;
+			_context = context;
 		}
 
         public async Task<Event> GetEvent(int id)
