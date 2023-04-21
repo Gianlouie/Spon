@@ -6,47 +6,25 @@ namespace SponRest.Models
 {
     public class Event
     {
-        private string title = string.Empty;
-        private string photo = string.Empty;
-        private string address = string.Empty;
-        private decimal price = decimal.MinusOne;
-        private List<Attendant> attendants = new List<Attendant>();
-        private EventStatus eventStatus = EventStatus.None;
+        public string Title { get; set; }
 
-        public string Title
-        {
-            get => title; set => title = value;
-        }
+        public string Photo { get; set; }
 
-        public string Photo
-        {
-            get => photo; set => photo = value;
-        }
+        public DateTime StartTime { get; set; }
 
-        public DateTime StartTime
-        {
-            get; set;
-        }
+        public string Address { get; set; }
 
-        public string Address
-        {
-            get => address; set => address = value;
-        }
+        public decimal Price { get; set; }
 
-        public decimal Price
-        {
-            get => price; set => price = value;
-        }
+        public List<Attendant> Attendants { get; set; }
 
-        public List<Attendant> Attendants
-        {
-            get => attendants; set => attendants = value;
-        }
+        public EventStatus EventStatus { get; set; }
 
-        public EventStatus EventStatus
-        {
-            get => eventStatus; set => eventStatus = value;
-        }
+        public int AttendentCount { get; set; }
+
+        public string Activity { get; set; }
+
+        public string Place { get; set; }
     }
 }
 
