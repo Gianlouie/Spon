@@ -1,4 +1,5 @@
 ﻿using System;
+using SponRest.Dto;
 using SponRest.Models;
 
 namespace SponRest.Contracts
@@ -7,6 +8,9 @@ namespace SponRest.Contracts
 	{
 		public Task<IEnumerable<Event>> GetEvents();
 		public Task<Event> GetEvent(int id);
+		public Task<Event> CreateEvent(EventForCreationDto eventForCreationDto);
+		public Task UpdateEvent(EventForUpdateDto eventForUpdateDto, int id);
+		public Task DeleteEvent(int id);
 	}
 }
 

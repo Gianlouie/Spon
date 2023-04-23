@@ -1,11 +1,10 @@
 ﻿using System;
 using SponRest.Models;
+
 namespace SponRest.Dto
 {
-	public class EventForCreationDto
+	public class EventForUpdateDto
 	{
-        public int UserId { get; set; }
-
         public string Photo { get; set; }
 
         public DateTime StartTime { get; set; }

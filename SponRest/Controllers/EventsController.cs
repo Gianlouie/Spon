@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SponRest.Contracts;
+using SponRest.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -49,6 +50,66 @@ namespace SponRest.Controllers
             catch (Exception e)
             {
                 return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateEvent(EventForCreationDto eventForCreationDto)
+        {
+            try
+            {
+                var createdEvent = await _eventRepo.CreateEvent(eventForCreationDto);
+
+                return CreatedAtRoute("EventById", new { id = createdEvent.Id }, createdEvent);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateEvent(int id, EventForUpdateDto eventForUpdateDto)
+        {
+            try
+            {
+                var eventToUpdate = await _eventRepo.GetEvent(id);
+
+                if (eventToUpdate == null)
+                {
+                    return NotFound();
+                }
+
+                await _eventRepo.UpdateEvent(eventForUpdateDto, id);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEvent(int id)
+        {
+            try
+            {
+                var eventToUpdate = await _eventRepo.GetEvent(id);
+
+                if (eventToUpdate == null)
+                {
+                    return NotFound();
+                }
+
+                await _eventRepo.DeleteEvent(id);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
 
