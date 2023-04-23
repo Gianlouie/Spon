@@ -21,6 +21,7 @@
     <None Remove="Context\" />
     <None Remove="Contracts\" />
     <None Remove="Repository\" />
+    <None Remove="Dto\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -28,5 +29,6 @@
     <Folder Include="Context\" />
     <Folder Include="Contracts\" />
     <Folder Include="Repository\" />
+    <Folder Include="Dto\" />
   </ItemGroup>
 </Project>

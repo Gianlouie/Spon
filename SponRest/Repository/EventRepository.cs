@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Dapper;
 using SponRest.Context;
 using SponRest.Contracts;
@@ -17,25 +18,70 @@ namespace SponRest.Repository
 
         public async Task<Event> GetEvent(int id)
         {
-			var query = "SELECT * FROM EVENT WHERE Id = @Id";
+			var procedureName = "dbo.usp_EVENT_GetEvent";
 
-			using (var connection = _context.CreateConnection())
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id, DbType.Int32, ParameterDirection.Input);
+
+            using (var connection = _context.CreateConnection())
 			{
-				var ev = await connection.QuerySingleOrDefaultAsync<Event>(query, new { id });
+                var eventDict = new Dictionary<int, Event>();
 
-				return ev;
+                var ev = await connection.QueryAsync<Event, Address, Coordinates, Attendant, Event>(
+                    procedureName,
+                    (ev, address, coordinates, attendant) =>
+                    {
+                        ev.Address = address;
+                        ev.Coordinates = coordinates;
+
+                        if (!eventDict.TryGetValue(ev.Id, out var currentEvent))
+                        {
+                            currentEvent = ev;
+                            eventDict.Add(currentEvent.Id, currentEvent);
+                        }
+
+                        currentEvent.Attendants.Add(attendant);
+
+                        return currentEvent;
+                    },
+					param: parameters,
+                    commandType: CommandType.StoredProcedure,
+                    splitOn: "address1, longitude, id");
+
+                return ev.FirstOrDefault();
 			}
         }
 
         public async Task<IEnumerable<Event>> GetEvents()
         {
-			var query = "SELECT * FROM EVENT";
+            var procedureName = "dbo.usp_EVENT_GetEvents";
 
 			using (var connection = _context.CreateConnection())
 			{
-				var events = await connection.QueryAsync<Event>(query);
+				var eventDict = new Dictionary<int, Event>();
 
-				return events.ToList();
+				var events = await connection.QueryAsync<Event, Address, Coordinates, Attendant, Event>(
+					procedureName,
+					(ev, address, coordinates, attendant) =>
+					{
+						ev.Address = address;
+						ev.Coordinates = coordinates;
+
+						if (!eventDict.TryGetValue(ev.Id, out var currentEvent))
+						{
+							currentEvent = ev;
+							eventDict.Add(currentEvent.Id, currentEvent);
+						}
+
+						currentEvent.Attendants.Add(attendant);
+
+						return currentEvent;
+					},
+					commandType: CommandType.StoredProcedure,
+					splitOn: "address1, longitude, id");
+
+
+				return events.Distinct().ToList();
 			}
         }
     }

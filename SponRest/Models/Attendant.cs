@@ -2,13 +2,13 @@
 
 namespace SponRest.Models
 {
-    public class Attendant
+    public class Attendant : User
     {
-        public string FirstName { get; set; }
+        public int EventId { get; set; }
 
-        public string LastName { get; set; }
+        public bool IsHost { get; set; }
 
-        public string Photo { get; set; }
+        public DateTime JoinDate { get; set; }
     }
 }
 

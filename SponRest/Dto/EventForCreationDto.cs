@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Net;
-using SponRest.Enums;
-
-namespace SponRest.Models
+using SponRest.Models;
+namespace SponRest.Dto
 {
-    public class Event
-    {
-        public int Id { get; set; }
-
+	public class EventForCreationDto
+	{
         public string Photo { get; set; }
 
         public DateTime StartTime { get; set; }
@@ -21,12 +17,6 @@ namespace SponRest.Models
         public string Place { get; set; }
 
         public Coordinates Coordinates { get; set; }
-
-        public List<Attendant> Attendants { get; set; } = new List<Attendant>();
-
-        public DateTime CreateDate { get; set; }
-
-        public DateTime UpdateDate { get; set; }
     }
 }
 
