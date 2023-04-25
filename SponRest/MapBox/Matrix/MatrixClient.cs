@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Text;
+using Newtonsoft.Json;
 using RestSharp;
-using RestSharp.Authenticators;
-using RestSharp.Authenticators.OAuth2;
 using SponRest.Enums;
 using SponRest.Models;
 
@@ -21,7 +20,7 @@ namespace SponRest.MapBox.Matrix
 			_baseUrl = _configuration.GetSection("MapBox")["MatrixBaseUrl"];
 		}
 
-		public async Task<string> GetMatrix(Coordinates A, Coordinates B)
+		public async Task<MatrixResponse> GetMatrix(Coordinates A, Coordinates B)
 		{
 			StringBuilder coordinateStr = new StringBuilder();
 
@@ -35,7 +34,9 @@ namespace SponRest.MapBox.Matrix
 
 			var response = await client.GetAsync(request);
 
-			return response.Content;
+			var dsresponse = JsonConvert.DeserializeObject<MatrixResponse>(response.Content);
+
+			return dsresponse;
 		}
 	}
 }

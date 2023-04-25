@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Newtonsoft.Json;
 namespace SponUI.Models
 {
 	public class Attendant
@@ -8,6 +9,7 @@ namespace SponUI.Models
 		private string lastName = string.Empty;
 		private Image photo = new Image() { Source = ImageSource.FromFile("defaultpp.png") };
 
+		[JsonProperty("firstName")]
 		public string FirstName
 		{
 			get
@@ -20,6 +22,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("lastName")]
 		public string LastName
 		{
 			get
@@ -32,6 +35,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("photo")]
 		public Image Photo
 		{
 			get

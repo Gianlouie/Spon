@@ -3,8 +3,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using RestSharp;
 using SponUI.Enums;
 using SponUI.Models;
+using Newtonsoft.Json;
 
 namespace SponUI.ViewModel
 {
@@ -25,19 +27,30 @@ namespace SponUI.ViewModel
         bool isRefreshing;
 
         [RelayCommand]
-        public void GetEvents()
+        public async void GetEvents()
         {
-            //Events.Clear();
+            try
+            {
+                Events.Clear();
 
-            Random r = new Random();
-           
-            List<Attendant> attendants = new List<Attendant>() { new Attendant(), new Attendant(), new Attendant() };
+                string baseUrl = "https://sponrest.azurewebsites.net/";
 
-            Events.Add(new Event() { Photo = new Image() { Source = "bowling.png" }, Activity = "Bowling", Place = "Boardwalk Bowl", Price = r.Next(1, 20), Attendants = attendants });
-            //Events.Add(new Event() { Activity = "Hiking", Place = "Nature Trail", Attendants = attendants });
-            
+                var options = new RestClientOptions(baseUrl);
 
-            IsRefreshing = false;
+                var client = new RestClient(options);
+
+                var request = new RestRequest("api/events");
+
+                var response = await client.GetAsync(request);
+
+                Events = JsonConvert.DeserializeObject<ObservableCollection<Event>>(response.Content);
+
+                IsRefreshing = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

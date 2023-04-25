@@ -1,5 +1,6 @@
 ﻿using System;
 using SponUI.Enums;
+using Newtonsoft.Json;
 
 namespace SponUI.Models
 {
@@ -8,7 +9,7 @@ namespace SponUI.Models
 		private string title = string.Empty;
 		private Image photo = new Image() { Source = ImageSource.FromFile("default_image.png") };
 		private DateTime startTime = DateTime.MinValue;
-		private string address = string.Empty;
+		private Address address = new Address();
 		private decimal price = decimal.MinusOne;
 		private List<Attendant> attendants = new List<Attendant>();
 		private EventStatus eventStatus = EventStatus.None;
@@ -23,6 +24,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("photo")]
 		public Image Photo
 		{
 			get
@@ -35,6 +37,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("startTime")]
 		public DateTime StartTime
 		{
 			get
@@ -47,7 +50,8 @@ namespace SponUI.Models
 			}
 		}
 
-		public string Address
+		[JsonProperty("address")]
+		public Address Address
 		{
 			get
 			{
@@ -59,6 +63,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("price")]
 		public decimal Price
 		{
 			get
@@ -71,6 +76,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("attendants")]
 		public List<Attendant> Attendants
 		{
 			get
@@ -83,6 +89,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("eventStatus")]
 		public EventStatus EventStatus
 		{
 			get
@@ -103,6 +110,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("activity")]
 		public string Activity
 		{
 			get
@@ -115,6 +123,7 @@ namespace SponUI.Models
 			}
 		}
 
+		[JsonProperty("place")]
 		public string Place
 		{
 			get

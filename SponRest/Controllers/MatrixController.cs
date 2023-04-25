@@ -20,12 +20,11 @@ namespace SponRest.Controllers
 		}
 
 		[HttpGet]
-		[Route("api/Matrix/{A}/{B}")]
-		public async Task<ActionResult> GetMatrix(Coordinates A, Coordinates B)
+		public async Task<ActionResult> GetMatrix([FromQuery]MatrixRequest matrixRequest)
 		{
 			try
 			{
-				var response = await _matrixClient.GetMatrix(A, B);
+				var response = await _matrixClient.GetMatrix(matrixRequest.A, matrixRequest.B);
 
 				return Ok(response);
 			}
