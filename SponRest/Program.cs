@@ -1,5 +1,6 @@
 ﻿using SponRest.Context;
 using SponRest.Contracts;
+using SponRest.MapBox.Matrix;
 using SponRest.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddSingleton<MatrixClient>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IAttendantRepository, AttendantRepository>();
 

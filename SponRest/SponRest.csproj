@@ -13,6 +13,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,8 @@
     <None Remove="Contracts\" />
     <None Remove="Repository\" />
     <None Remove="Dto\" />
+    <None Remove="MapBox\" />
+    <None Remove="MapBox\Matrix\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -30,5 +33,7 @@
     <Folder Include="Contracts\" />
     <Folder Include="Repository\" />
     <Folder Include="Dto\" />
+    <Folder Include="MapBox\" />
+    <Folder Include="MapBox\Matrix\" />
   </ItemGroup>
 </Project>
