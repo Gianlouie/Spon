@@ -8,26 +8,12 @@
              ios:Page.UseSafeArea="True"
              >
 
-    <Grid RowDefinitions="50, Auto, *"
-          ColumnDefinitions=".125*, .125*, .50*, .25*"
-          ColumnSpacing="20"
-          RowSpacing="20"
-          HorizontalOptions="FillAndExpand"
-          VerticalOptions="FillAndExpand">
-
-        <Image Grid.Column="0" Source="menu_icon.png" Aspect="AspectFill"></Image>
-        <Image Grid.Column="1" Source="create_event_icon.png" Aspect="AspectFit" HeightRequest="35" WidthRequest="35" TranslationX="-15"></Image>
-        <Image Grid.Column="2" Source="logo_fullcolor.png" Aspect="AspectFit" HeightRequest="75" WidthRequest="75" TranslationX="-10"></Image>
-        <Image Grid.Column="3" Source="message_icon.png" Aspect="AspectFit" TranslationX="10" TranslationY="5"></Image>
-
-
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding GetEventsCommand}"
                      Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Column="0"
                      Margin="-15,0"
                      >
-            <CollectionView Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Column="0"
-                     Margin="-15,0" ItemsSource="{Binding Events}">
+            <CollectionView ItemsSource="{Binding Events}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type model:Event}">
                         <Grid HorizontalOptions="Center" VerticalOptions="Center" >
@@ -46,7 +32,7 @@
                                 <Border.Triggers>
                                     <DataTrigger TargetType="Border"
                                                  Binding="{Binding Price}"
-                                                 Value="-1">
+                                                 Value="0">
                                         <Setter Property="Stroke"
                                                 Value="#95F020">
                                         </Setter>
@@ -68,7 +54,7 @@
                                         <Label.Triggers>
                                             <DataTrigger TargetType="Label"
                                                          Binding="{Binding Price}"
-                                                         Value="-1">
+                                                         Value="0">
                                                 <Setter Property="TextColor"
                                                         Value="Black">
                                                 </Setter>
@@ -265,6 +251,5 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-    </Grid>
 </ContentPage>
 
