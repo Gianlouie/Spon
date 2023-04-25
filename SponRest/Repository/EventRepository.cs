@@ -46,7 +46,7 @@ namespace SponRest.Repository
                     commandType: CommandType.StoredProcedure,
                     splitOn: "address1, longitude, id");
 
-                return ev.SingleOrDefault();
+                return ev.FirstOrDefault();
 			}
         }
 
@@ -149,20 +149,6 @@ namespace SponRest.Repository
 				await connection.ExecuteAsync(procedureName, parameters, commandType: CommandType.StoredProcedure);
 			}
 
-        }
-
-		public async Task JoinEvent(int id, int userId)
-		{
-			var procedureName = "dbo.usp_EVENT_JoinEvent";
-
-            var parameters = new DynamicParameters();
-            parameters.Add("@id", id, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@user_id", id, DbType.Int32, ParameterDirection.Input);
-
-			using (var connection = _context.CreateConnection())
-			{
-				await connection.ExecuteAsync(procedureName, parameters, commandType: CommandType.StoredProcedure);
-			}
         }
     }
 }
