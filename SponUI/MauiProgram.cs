@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using SponUI.ViewModel;
+using Microsoft.Maui.Platform;
 
 namespace SponUI;
 
@@ -38,8 +39,14 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MainViewModel>();
 
+		#if IOS
+		Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping("custom", (handler,view) =>        {           
+ 		 handler.PlatformView.UpdateContentSize(handler.VirtualView.ContentSize);            handler.PlatformArrange(handler.PlatformView.Frame.ToRectangle());       
+ 		 });
+		#endif
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
