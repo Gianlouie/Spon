@@ -50,9 +50,11 @@ namespace SponRest.Repository
 			}
         }
 
-        public async Task<IEnumerable<Event>> GetEvents()
+        public async Task<IEnumerable<Event>> GetEvents(string state)
         {
             var procedureName = "dbo.usp_EVENT_GetEvents";
+			var parameters = new DynamicParameters();
+			parameters.Add("@state", state);
 
 			using (var connection = _context.CreateConnection())
 			{
@@ -75,6 +77,7 @@ namespace SponRest.Repository
 
 						return currentEvent;
 					},
+					param: parameters,
 					commandType: CommandType.StoredProcedure,
 					splitOn: "address1, longitude, id");
 

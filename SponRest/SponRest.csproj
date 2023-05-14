@@ -29,6 +29,9 @@
     <None Remove="Dto\" />
     <None Remove="MapBox\" />
     <None Remove="MapBox\Matrix\" />
+    <None Remove="Service\" />
+    <None Remove="MapBox\Geocoding\" />
+    <None Remove="MapBox\Geocoding\Request\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -39,5 +42,8 @@
     <Folder Include="Dto\" />
     <Folder Include="MapBox\" />
     <Folder Include="MapBox\Matrix\" />
+    <Folder Include="Service\" />
+    <Folder Include="MapBox\Geocoding\" />
+    <Folder Include="MapBox\Geocoding\Request\" />
   </ItemGroup>
 </Project>

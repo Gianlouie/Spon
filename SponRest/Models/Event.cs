@@ -27,6 +27,8 @@ namespace SponRest.Models
         public DateTime CreateDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
+
+        public float Distance { get; set; }
     }
 }
 

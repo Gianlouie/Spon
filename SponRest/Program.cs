@@ -1,7 +1,9 @@
 ﻿using SponRest.Context;
 using SponRest.Contracts;
+using SponRest.MapBox.Geocoding;
 using SponRest.MapBox.Matrix;
 using SponRest.Repository;
+using SponRest.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +16,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddSingleton<MatrixClient>();
+builder.Services.AddSingleton<GeocodingClient>();
+builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IAttendantRepository, AttendantRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

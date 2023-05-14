@@ -1,10 +1,8 @@
 ﻿using System;
-namespace SponRest.Models
+namespace SponRest.Dto
 {
-	public class User
+	public class UserForUpdateDto
 	{
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -12,8 +10,6 @@ namespace SponRest.Models
         public string Photo { get; set; }
 
         public string PhoneNumber { get; set; }
-
-        public DateTime CreateDate { get; set; }
     }
 }
 

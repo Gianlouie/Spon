@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SponRest.Contracts;
 using SponRest.Dto;
+using SponRest.Models;
+using SponRest.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,18 +17,21 @@ namespace SponRest.Controllers
     public class EventsController : Controller
     {
         private readonly IEventRepository _eventRepo;
+        private readonly IEventService _eventService;
 
-        public EventsController(IEventRepository eventRepo)
+        public EventsController(IEventRepository eventRepo, IEventService eventService)
         {
             _eventRepo = eventRepo;
+            _eventService = eventService;
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetEvents()
+        public async Task<ActionResult> GetEvents([FromQuery]Coordinates currentLocation)
         {
             try
             {
-                var events = await _eventRepo.GetEvents();
+                var events = await _eventService.GetEvents(currentLocation);
+
                 return Ok(events);
             }
             catch (Exception e)

@@ -10,21 +10,29 @@ namespace SponRest.MapBox.Matrix
 	public class MatrixClient
 	{
         private readonly IConfiguration _configuration;
-		private readonly string _accessToken;
-		private readonly string _baseUrl;
+        private readonly string _accessToken;
+        private readonly string _baseUrl;
 
         public MatrixClient(IConfiguration configuration)
-		{
-			_configuration = configuration;
-			_accessToken = _configuration.GetSection("MapBox")["AccessToken"];
-			_baseUrl = _configuration.GetSection("MapBox")["MatrixBaseUrl"];
-		}
+        {
+            _configuration = configuration;
+            _accessToken = _configuration.GetSection("MapBox")["AccessToken"];
+            _baseUrl = _configuration.GetSection("MapBox")["MatrixBaseUrl"];
+        }
 
-		public async Task<MatrixResponse> GetMatrix(Coordinates A, Coordinates B)
+        public async Task<MatrixResponse> GetMatrix(List<Coordinates> coordinates)
 		{
 			StringBuilder coordinateStr = new StringBuilder();
 
-			coordinateStr.Append(A.Longitude + "," + A.Latitude + ";" + B.Longitude + "," + B.Latitude);
+			for(int i = 0; i < coordinates.Count; i++)
+			{
+				coordinateStr.Append(coordinates[i].Longitude + "," + coordinates[i].Latitude);
+
+				if (i != coordinates.Count - 1)
+				{
+					coordinateStr.Append(';');
+				}
+			}
 
 			var options = new RestClientOptions(_baseUrl);
 
