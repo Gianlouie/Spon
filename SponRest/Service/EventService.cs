@@ -35,26 +35,35 @@ namespace SponRest.Service
 
 		private async Task<IEnumerable<Event>> SortEventsByDistance(IEnumerable<Event> events, Coordinates currentLocation)
 		{
-            List<Coordinates> coordinates = new List<Coordinates>
-            {
-                currentLocation
-            };
+			List<Event> unsortedEvents = new List<Event>();
 
-            foreach (var ev in events)
+			var chunkedEvents = events.Chunk(25);
+
+			foreach(var eventChunk in chunkedEvents)
 			{
-				coordinates.Add(ev.Coordinates);
-			}
+                var evs = eventChunk;
 
-			MatrixResponse matrixReponse = await _matrixClient.GetMatrix(coordinates);
+                List<Coordinates> coordinates = new List<Coordinates>
+				{
+					currentLocation
+				};
 
-			var evs = events.ToList();
+                foreach (var ev in eventChunk)
+				{
+					coordinates.Add(ev.Coordinates);
+				}
 
-			for (int i = 1; i < matrixReponse.Distances[0].Count; i++)
-			{
-				evs[i-1].Distance = ConvertToMilesFromMeters(matrixReponse.Distances[0][i]);
-			}
+                MatrixResponse matrixReponse = await _matrixClient.GetMatrix(coordinates);
 
-			var sortedEvents = evs.OrderBy(o => o.Distance).ToList();
+				for (int i = 1; i < matrixReponse.Distances[0].Count; i++)
+				{
+                    evs[i - 1].Distance = ConvertToMilesFromMeters(matrixReponse.Distances[0][i]);
+                }
+
+				unsortedEvents.AddRange(evs);
+            }
+
+			var sortedEvents = unsortedEvents.OrderBy(o => o.Distance);
 
 			return sortedEvents;
 		}
