@@ -9,18 +9,27 @@ namespace SponRest.Service
 {
 	public class EventService : IEventService
 	{
+        #region dependencies
         private readonly IEventRepository _eventRepo;
 		private readonly GeocodingClient _geocodingClient;
 		private readonly MatrixClient _matrixClient;
+        #endregion
 
+        #region constants
+        private const double METER_TO_MILE_RATIO = 1609.344;
+        #endregion
+
+        #region constructor
         public EventService(IEventRepository eventRepo, GeocodingClient geocodingClient, MatrixClient matrixClient)
 		{
 			_eventRepo = eventRepo;
 			_geocodingClient = geocodingClient;
 			_matrixClient = matrixClient;
 		}
+        #endregion
 
-		public async Task<IEnumerable<Event>> GetEvents(Coordinates currentLocation)
+        #region public methods
+        public async Task<IEnumerable<Event>> GetEvents(Coordinates currentLocation)
 		{
 			GeocodeResponse geocodeResponse = await _geocodingClient.GetReverseGeocode(currentLocation);
 
@@ -32,8 +41,10 @@ namespace SponRest.Service
 
 			return events;
 		}
+        #endregion
 
-		private async Task<IEnumerable<Event>> SortEventsByDistance(IEnumerable<Event> events, Coordinates currentLocation)
+        #region private methods
+        private async Task<IEnumerable<Event>> SortEventsByDistance(IEnumerable<Event> events, Coordinates currentLocation)
 		{
 			List<Event> unsortedEvents = new List<Event>();
 
@@ -61,6 +72,8 @@ namespace SponRest.Service
                 }
 
 				unsortedEvents.AddRange(evs);
+
+				coordinates.Clear();
             }
 
 			var sortedEvents = unsortedEvents.OrderBy(o => o.Distance);
@@ -70,8 +83,9 @@ namespace SponRest.Service
 
 		private float ConvertToMilesFromMeters(float distanceByMeters)
 		{
-			return (float)(distanceByMeters / 1609.344);
+			return (float)(distanceByMeters / METER_TO_MILE_RATIO);
 		}
-	}
+        #endregion
+    }
 }
 
