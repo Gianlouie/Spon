@@ -1,6 +1,7 @@
 ﻿using System;
 using SponUI.Enums;
 using Newtonsoft.Json;
+using Microsoft.Maui.Controls;
 
 namespace SponUI.Models
 {
@@ -15,6 +16,8 @@ namespace SponUI.Models
 		private EventStatus eventStatus = EventStatus.None;
 		private string activity = string.Empty;
 		private string place = string.Empty;
+		private float distance = 0;
+		private string startingIn = string.Empty;
 
 		public string Title
 		{
@@ -135,6 +138,37 @@ namespace SponUI.Models
 				place = value;
 			}
 		}
-	}
+
+		[JsonProperty("distance")]
+		public string Distance
+		{
+			get
+			{
+				return distance.ToString("0.00");
+			}
+			set
+			{
+				distance = float.Parse(value);
+			}
+		}
+
+		public string StartingIn
+		{
+			get
+			{
+				TimeSpan span = StartTime - DateTime.Now;
+
+				if (span.Minutes > 0)
+				{
+					return String.Format("{0}:{1}",
+					span.Hours.ToString().PadLeft(2, '0'), span.Minutes.ToString().PadLeft(2,'0'));
+				}
+				else
+				{
+					return "0:00";
+				}
+            }
+        }
+    }
 }
 
