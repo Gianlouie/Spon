@@ -21,11 +21,11 @@ namespace SponRest.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult> GetSearchBoxSuggestions(string searchText)
+		public async Task<ActionResult> GetSearchBoxSuggestions(string searchText, Guid guid)
 		{
 			try
 			{
-				var response = await _searchboxClient.GetSearchboxSuggestions(searchText, Guid.NewGuid());
+				var response = await _searchboxClient.GetSearchboxSuggestions(searchText, guid);
 
 				return Ok(response);
 			}
