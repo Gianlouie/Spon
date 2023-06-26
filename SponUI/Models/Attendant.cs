@@ -7,7 +7,7 @@ namespace SponUI.Models
 	{
 		private string firstName = string.Empty;
 		private string lastName = string.Empty;
-		private Image photo = new Image() { Source = ImageSource.FromFile("defaultpp.png") };
+		private byte[] photo;
 
 		[JsonProperty("firstName")]
 		public string FirstName
@@ -35,16 +35,34 @@ namespace SponUI.Models
 			}
 		}
 
-		[JsonProperty("photo")]
+        [JsonProperty("photo")]
+        public byte[] Photo64
+        {
+            get
+            {
+                return photo;
+            }
+            set
+            {
+                photo = value;
+            }
+        }
+
 		public Image Photo
 		{
 			get
 			{
-				return photo;
-			}
-			set
-			{
-				photo = value;
+				if (photo != null)
+				{
+                    MemoryStream stream = new MemoryStream(photo);
+
+                    ImageSource image = ImageSource.FromStream(() => stream);
+                    return new Image { Source = image };
+                }
+				else
+				{
+					return new Image();
+				}
 			}
 		}
     }

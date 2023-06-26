@@ -8,7 +8,7 @@ namespace SponRest.Models
     {
         public int Id { get; set; }
 
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
 
         public DateTime StartTime { get; set; }
 
@@ -27,6 +27,8 @@ namespace SponRest.Models
         public DateTime CreateDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
+
+        public float Distance { get; set; }
     }
 }
 

@@ -19,12 +19,17 @@ namespace SponRest.Controllers
 			_matrixClient = matrixClient;
 		}
 
-		[HttpGet]
-		public async Task<ActionResult> GetMatrix([FromQuery]MatrixRequest matrixRequest)
+		[HttpPost]
+		public async Task<ActionResult> GetMatrix(List<Coordinates> coordinates)
 		{
 			try
 			{
-				var response = await _matrixClient.GetMatrix(matrixRequest.A, matrixRequest.B);
+                if (coordinates.Count > 25)
+                {
+                    throw new ArgumentOutOfRangeException(paramName: "coordinates", message: "Cannot process more than 25 coordinates.");
+                }
+
+                var response = await _matrixClient.GetMatrix(coordinates);
 
 				return Ok(response);
 			}

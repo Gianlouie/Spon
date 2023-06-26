@@ -6,7 +6,7 @@ namespace SponRest.Dto
 	{
         public int UserId { get; set; }
 
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
 
         public DateTime StartTime { get; set; }
 
