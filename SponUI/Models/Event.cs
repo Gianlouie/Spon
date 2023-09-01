@@ -1,13 +1,17 @@
 ﻿using System;
 using SponUI.Enums;
 using Newtonsoft.Json;
+using Microsoft.Maui.Controls;
+using System.Linq;
+using System.Data;
 
 namespace SponUI.Models
 {
 	public class Event
 	{
 		private string title = string.Empty;
-		private Image photo = new Image() { Source = ImageSource.FromFile("default_image.png") };
+		private byte[] photo;
+		private Image photoImg;
 		private DateTime startTime = DateTime.MinValue;
 		private Address address = new Address();
 		private decimal price = decimal.MinusOne;
@@ -15,6 +19,9 @@ namespace SponUI.Models
 		private EventStatus eventStatus = EventStatus.None;
 		private string activity = string.Empty;
 		private string place = string.Empty;
+		private float distance = 0;
+		private string startingIn = string.Empty;
+		private bool isLessThan3Hours = false;
 
 		public string Title
 		{
@@ -25,7 +32,7 @@ namespace SponUI.Models
 		}
 
 		[JsonProperty("photo")]
-		public Image Photo
+		public byte[] Photo64
 		{
 			get
 			{
@@ -34,6 +41,20 @@ namespace SponUI.Models
 			set
 			{
 				photo = value;
+			}
+
+		}
+
+		public Image Photo
+		{
+			get
+			{
+				return photoImg;
+            }
+
+			set
+			{
+				photoImg = value;
 			}
 		}
 
@@ -135,6 +156,47 @@ namespace SponUI.Models
 				place = value;
 			}
 		}
-	}
+
+		[JsonProperty("distance")]
+		public string Distance
+		{
+			get
+			{
+				return distance.ToString("0.00");
+			}
+			set
+			{
+				distance = float.Parse(value);
+			}
+		}
+
+		public string StartingIn
+		{
+			get
+			{
+				TimeSpan span = StartTime - DateTime.Now;
+
+				if (span.Minutes > 0)
+				{
+					return String.Format("{0}:{1}",
+					span.Hours.ToString().PadLeft(2, '0'), span.Minutes.ToString().PadLeft(2,'0'));
+				}
+				else
+				{
+					return "0:00";
+				}
+            }
+        }
+
+		public bool IsLessThan3Hours
+		{
+			get
+			{
+				TimeSpan span = StartTime - DateTime.Now;
+
+				return span.Hours < 3;
+			}
+		}
+    }
 }
 

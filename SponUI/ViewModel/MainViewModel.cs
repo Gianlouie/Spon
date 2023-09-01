@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using RestSharp;
-using SponUI.Enums;
 using SponUI.Models;
 using Newtonsoft.Json;
+using SponUI.Util;
 
 namespace SponUI.ViewModel
 {
@@ -26,30 +24,83 @@ namespace SponUI.ViewModel
         [ObservableProperty]
         bool isRefreshing;
 
+        [ObservableProperty]
+        bool isBusy;
+
+        [ObservableProperty]
+        public Event selectedEvent;
+
         [RelayCommand]
         public async void GetEvents()
         {
             try
             {
-                Events.Clear();
+                Events?.Clear();
+
+                IsRefreshing = false;
+                IsBusy = true;
+
+                LocationServices location = new LocationServices();
+
+                var coordinates = await location.GetCurrentLocation();
 
                 string baseUrl = "https://sponrest.azurewebsites.net/";
 
                 var options = new RestClientOptions(baseUrl);
 
-                var client = new RestClient(options);
+                RestClient client = new RestClient(options);
 
-                var request = new RestRequest("api/events");
+                var request = new RestRequest("api/events?Longitude=" + coordinates.Longitude + "&Latitude=" + coordinates.Latitude);
 
-                var response = await client.GetAsync(request);
+                RestResponse response = new RestResponse();
 
-                Events = JsonConvert.DeserializeObject<ObservableCollection<Event>>(response.Content);
+                response = await client.GetAsync(request);
 
-                IsRefreshing = false;
+                Events = JsonConvert.DeserializeObject<ObservableCollection<Event>>(response?.Content);
+
+                LoadImages(Events);
+
+                IsBusy = false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        public async void CreateEvent()
+        {
+            await Shell.Current.GoToAsync(nameof(CreateEventPage),true);
+
+        }
+
+        [RelayCommand]
+        public async void EditEvent()
+        {
+            if (SelectedEvent != null)
+            {
+                await Shell.Current.GoToAsync(nameof(CreateEventPage));
+                SelectedEvent = null;
+            }
+        }
+
+        private void LoadImages(ObservableCollection<Event> events)
+        {
+            foreach (var ev in events)
+            {
+                if (ev.Photo64 != null)
+                {
+                    var stream = new MemoryStream(ev.Photo64);
+
+                    var image = ImageSource.FromStream(() => stream);
+
+                    ev.Photo = new Image() { Source = image };
+                }
+                else
+                {
+                    ev.Photo = new Image();
+                }
             }
         }
     }

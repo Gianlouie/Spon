@@ -32,6 +32,9 @@
     <None Remove="Service\" />
     <None Remove="MapBox\Geocoding\" />
     <None Remove="MapBox\Geocoding\Request\" />
+    <None Remove="MapBox\Searchbox\" />
+    <None Remove="MapBox\Searchbox\Request\" />
+    <None Remove="MapBox\Searchbox\Response\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -45,5 +48,8 @@
     <Folder Include="Service\" />
     <Folder Include="MapBox\Geocoding\" />
     <Folder Include="MapBox\Geocoding\Request\" />
+    <Folder Include="MapBox\Searchbox\" />
+    <Folder Include="MapBox\Searchbox\Request\" />
+    <Folder Include="MapBox\Searchbox\Response\" />
   </ItemGroup>
 </Project>

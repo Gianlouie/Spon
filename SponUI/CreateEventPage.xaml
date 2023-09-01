@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SponUI.CreateEventPage"
+             xmlns:viewmodel="clr-namespace:SponUI.ViewModel"
+             xmlns:model="clr-namespace:SponUI.Models" x:DataType="viewmodel:CreateEventViewModel"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             Title="CreateEventPage">
+    <Grid RowDefinitions="*, 750" BackgroundColor="White">
+        <HorizontalStackLayout Grid.Row="0">
+            <ImageButton Source="esc_btn.png"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         Command="{Binding GoBackCommand}"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"
+                         TranslationX="25"
+                         TranslationY="25"
+                         ZIndex="1">
+            </ImageButton>
+
+            <Border StrokeThickness="1"
+                    Stroke="#FFAA2C"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    WidthRequest="150"
+                    HeightRequest="45"
+                    TranslationX="80"
+                    TranslationY="25"
+                    ZIndex="1">
+
+                <Label Text="Host an Event"
+                       FontFamily="Kanit-Regular"
+                       FontSize="15"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                </Label>
+            </Border>
+
+
+        </HorizontalStackLayout>
+        <Grid VerticalOptions="Center" Grid.Row="1">
+
+            <Border BackgroundColor="White"
+                    Stroke="White"
+                    StrokeShape="RoundRectangle 20"
+                    StrokeThickness="1"
+                    HeightRequest="700"
+                    WidthRequest="400"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    TranslationY="75"
+                    ZIndex="1">
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                            Offset="0,5"
+                            Radius="5"
+                            Opacity="0.4">
+                    </Shadow>
+                </Border.Shadow>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    Stroke="Black"
+                    StrokeThickness="0"
+                    HeightRequest="85"
+                    WidthRequest="350"
+                    ZIndex="1"
+                    TranslationY="95"
+                    FlexLayout.Order="0"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center">
+                <ImageButton Source="{Binding UploadedImage}"
+                             Command="{Binding UploadImageCommand}"
+                             HeightRequest="350"
+                             WidthRequest="350"
+                             >
+                </ImageButton>
+            </Border>
+
+            <HorizontalStackLayout Grid.Row="2"
+                                   ZIndex="1"
+                                   VerticalOptions="Center"
+                                   TranslationY="-110"
+                                   TranslationX="20">
+
+                <Entry Placeholder="Activity"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start"
+                       WidthRequest="150"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       HorizontalTextAlignment="Center"
+                       ClearButtonVisibility="WhileEditing"
+                       IsSpellCheckEnabled="True"
+                       Text="{Binding SelectedActivity}"
+                       >
+                </Entry>
+
+                <Label Text="@"
+                       FontFamily="Kanit-Regular"
+                       FontSize="25"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start">
+                </Label>
+
+                <dxe:AutoCompleteEdit LabelText="Place"
+                      PlaceholderText=""
+                      VerticalOptions="Center"
+                      HorizontalOptions="Center"
+                      Margin="16,0"
+                      WidthRequest="155"
+                      HeightRequest="50"
+                      TranslationY="-13"
+                      SubmitIconVisibility="Never"
+                      TextFontFamily="Kanit-Regular"
+                      TextHorizontalAlignment="Center"
+                      BackgroundColor="White"
+                      DropDownBackgroundColor="White"
+                      DropDownItemFontFamily="Kanit-Regular"
+                      ItemsSource="{Binding Suggestions}"
+                      LoadingProgressMode="Auto"
+                      NoResultsFoundText="No Results Found"
+                      SelectedItem="{Binding SelectedSuggestion}"
+                      DisplayMember="Name"
+                      >
+                    <dxe:AutoCompleteEdit.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type model:Suggestion}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height=".25*"/>
+                                </Grid.RowDefinitions>
+                                <Label Padding="10" Text="{Binding Name}" FontAttributes="Bold" FontSize="15"/>
+                                <Label Padding="10" Grid.Row="1" Text="{Binding Address}" FontSize="10"/>
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:AutoCompleteEdit.ItemTemplate>
+                    <dxe:AutoCompleteEdit.ItemsSourceProvider>
+                        <dxe:AsyncItemsSourceProvider ItemsRequested="OnDelegateRequested"
+                                                      RequestDelay="500"/>
+                    </dxe:AutoCompleteEdit.ItemsSourceProvider>
+                </dxe:AutoCompleteEdit>
+
+            </HorizontalStackLayout>
+            <VerticalStackLayout Grid.Row="3"
+                                 VerticalOptions="Center"
+                                 ZIndex="1"
+                                 TranslationY="190">
+
+                <Label Text="Event Starting Time:"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       FontSize="14"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       TranslationX="20"
+                       TranslationY="10">
+                </Label>
+                <Border BackgroundColor="White"
+                        Stroke="Black"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 10"
+                        WidthRequest="100"
+                        HorizontalOptions="Start"
+                        TranslationX="30"
+                        TranslationY="20">
+                    <DatePicker Date="{Binding SelectedDate}"
+                                MinimumDate="{Binding MinimumDate}"
+                                MaximumDate="{Binding MaximumDate}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                BackgroundColor="Transparent"
+                                FontFamily="Kanit-Regular">
+                    </DatePicker>
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="0,5"
+                                Radius="5"
+                                Opacity="0.4">
+                        </Shadow>
+                    </Border.Shadow>
+                </Border>
+
+                <Border BackgroundColor="White"
+                        Stroke="Black"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 10"
+                        WidthRequest="100"
+                        HorizontalOptions="Start"
+                        TranslationX="30"
+                        TranslationY="25">
+                    <TimePicker Time="{Binding SelectedTime}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                FontFamily="Kanit-Regular"
+                                >
+                    </TimePicker>
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="0,5"
+                                Radius="5"
+                                Opacity="0.4">
+                        </Shadow>
+                    </Border.Shadow>
+                </Border>
+
+                <Border BackgroundColor="White"
+                        Stroke="Black"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 10"
+                        WidthRequest="175"
+                        HeightRequest="120"
+                        TranslationX="80"
+                        TranslationY="-95">
+                    <Editor Placeholder="Details (What would you like people to know before this meetup?)"
+                            FontFamily="Kanit-Regular"
+                            TextColor="Black"
+                            BackgroundColor="Transparent"
+                            Keyboard="Text"
+                            Text="{Binding SelectedDetails}"
+                            >
+                    </Editor>
+                </Border>
+
+                <Label Text="Capacity:"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       FontSize="14"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       TranslationX="47"
+                       TranslationY="-77">
+                </Label>
+
+                <Entry Placeholder="∞"
+                           TextColor="Black"
+                           FontFamily="Kanit-Regular"
+                           FontSize="25"
+                           VerticalOptions="Center"
+                           Keyboard="Numeric"
+                           MaxLength="2"
+                           HorizontalOptions="Start"
+                           TranslationX="52"
+                           TranslationY="-75"
+                           Text="{Binding SelectedCapacity}">
+                </Entry>
+                <Label Text="Price:"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       FontSize="14"
+                       HorizontalOptions="End"
+                       VerticalOptions="Start"
+                       TranslationX="-105"
+                       TranslationY="-145"
+                       >
+                </Label>
+                <Entry Placeholder="$0"
+                       Text="{Binding SelectedPrice}"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       FontSize="14"
+                       VerticalOptions="Center"
+                       Keyboard="Numeric"
+                       MaxLength="8"
+                       HorizontalOptions="End"
+                       TranslationX="-95"
+                       TranslationY="-145">
+                </Entry>
+                <Label Text="/person"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       FontSize="12"
+                       HorizontalOptions="End"
+                       TranslationX="-50"
+                       TranslationY="-165">
+                </Label>
+                <Label Text="Sponsor"
+                       TextColor="Black"
+                       FontFamily="Kanit-Regular"
+                       FontSize="15"
+                       TranslationY="-47"
+                       TranslationX="165">
+                </Label>
+                <Image Source="star.png"
+                       HeightRequest="20"
+                       TranslationY="-69"
+                       TranslationX="-50">
+
+                </Image>
+                <Switch IsToggled="{Binding IsSponsorToggled}"
+                        ThumbColor="Grey"
+                        WidthRequest="45"
+                        BackgroundColor="White"
+                        TranslationY="-100"
+                        TranslationX="50"
+                        OnColor="#95F020"
+                        >
+                </Switch>
+                <Border StrokeShape="RoundRectangle 10"
+                        BackgroundColor="White"
+                        StrokeThickness="2"
+                        Stroke="#95F020"
+                        TranslationY="-100"
+                        WidthRequest="350"
+                        >
+                    <Button Text="Submit"
+                            BackgroundColor="White"
+                            TextColor="Black"
+                            FontFamily="Kanit-Regular"
+                            FontSize="20"
+                            Command="{Binding SubmitEventCommand}"></Button>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

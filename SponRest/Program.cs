@@ -2,6 +2,7 @@
 using SponRest.Contracts;
 using SponRest.MapBox.Geocoding;
 using SponRest.MapBox.Matrix;
+using SponRest.MapBox.Searchbox;
 using SponRest.Repository;
 using SponRest.Service;
 
@@ -17,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddSingleton<MatrixClient>();
 builder.Services.AddSingleton<GeocodingClient>();
+builder.Services.AddSingleton<SearchboxClient>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IAttendantRepository, AttendantRepository>();

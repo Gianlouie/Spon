@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using SponUI.ViewModel;
 using Microsoft.Maui.Platform;
+using DevExpress.Maui;
+using SponUI.SponRestClient;
 
 namespace SponUI;
 
@@ -11,7 +13,8 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+			.UseDevExpress()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -39,11 +42,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MainViewModel>();
 
-		#if IOS
-		Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping("custom", (handler,view) =>        {           
- 		 handler.PlatformView.UpdateContentSize(handler.VirtualView.ContentSize);            handler.PlatformArrange(handler.PlatformView.Frame.ToRectangle());       
- 		 });
-		#endif
+		builder.Services.AddTransient<CreateEventPage>();
+		builder.Services.AddTransient<CreateEventViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

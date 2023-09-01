@@ -14,3 +14,6 @@ dotnet_diagnostic.CS8603.severity = none
 
 # CS8604: Possible null reference argument.
 dotnet_diagnostic.CS8604.severity = none
+
+# CS0612: Type or member is obsolete
+dotnet_diagnostic.CS0612.severity = none

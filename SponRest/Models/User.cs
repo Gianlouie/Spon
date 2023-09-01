@@ -9,7 +9,7 @@ namespace SponRest.Models
 
         public string LastName { get; set; }
 
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
 
         public string PhoneNumber { get; set; }
 
